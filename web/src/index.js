@@ -1,4 +1,5 @@
 import dva from 'dva';
+import 'antd/dist/antd.less';
 import './index.css';
 
 // 1. Initialize
