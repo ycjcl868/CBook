@@ -1,26 +1,8 @@
-import bodyParser from 'koa-bodyparser'
-import Koa from 'koa'
-import logger from 'koa-logger'
-import mongoose from 'mongoose'
-import restc from 'restc'
-import routing from './routes/'
-import { port, connexionString } from './config'
+'use strict';
 
-mongoose.Promise = global.Promise;
-mongoose.connect(connexionString)
-mongoose.connection.on('error', console.error)
+// npm run dev DO NOT read this file
 
-// Create Koa Application
-const app = new Koa()
-
-app
-  .use(logger())
-  .use(restc.koa2())
-  .use(bodyParser())
-
-routing(app)
-
-// Start the application
-app.listen(port, () => console.log(`✅  The server is running at http://localhost:${port}/`))
-
-export default app
+require('egg').startCluster({
+  baseDir: __dirname,
+  port: process.env.PORT || 7001, // default to 7001
+});
